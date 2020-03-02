@@ -3,7 +3,8 @@ import {
     put,
     select
 } from 'redux-saga/effects'
-import uuid from 'uuid';
+// import uuid from 'uuid';
+import { v4 as uuid } from 'uuid'; //had problem with the old one
 import axios from 'axios'
 import * as mutations from './mutations';
 
@@ -49,5 +50,23 @@ export function* taskModificationSaga() {
                 isComplete: task.isComplete
             }
         })
+    }
+}
+
+export function* userAuthenticationSaga() {
+    while (true) {
+        const { username, password } = yield take(mutations.REQUEST_AUTHENTICATE_USER)
+        try {
+            const { data } = yield axios.post(url + `/authenticate`, { username, password })
+            if (!data) {
+                throw new Error('Auth error')
+            }
+
+            console.log('Authenticated!', data);
+
+        } catch (error) {
+            console.error(error)
+            yield put(mutations.processAuthenticateUser(mutations.NOT_AUTHENTICATED))
+        }
     }
 }
