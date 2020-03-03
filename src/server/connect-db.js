@@ -1,5 +1,6 @@
 import { MongoClient } from 'mongodb'
-const url = `mongodb://localhost:27017/todo`
+const url = process.env.MONGODB_URI || `mongodb://localhost:27017/todo`
+
 let db = null
 
 export async function connectDB() {

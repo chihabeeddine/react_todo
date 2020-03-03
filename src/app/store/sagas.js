@@ -7,9 +7,9 @@ import {
 import { v4 as uuid } from 'uuid'; //had problem with the old one
 import axios from 'axios'
 import * as mutations from './mutations';
+import { history } from "./history";
 
-
-const url = 'http://localhost:7777'
+const url = process.env.NODE_ENV == `production` ? '' : 'http://localhost:7777'
 
 
 export function* taskCreationSaga() {
@@ -63,6 +63,9 @@ export function* userAuthenticationSaga() {
             }
 
             console.log('Authenticated!', data);
+            yield put(mutations.setState(data.state))
+            yield put(mutations.processAuthenticateUser(mutations.AUTHENTICATED))
+            history.push('/dashboard')
 
         } catch (error) {
             console.error(error)
