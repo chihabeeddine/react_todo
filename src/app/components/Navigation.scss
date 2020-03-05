@@ -1,0 +1,13 @@
+@import '../assets/assets';
+
+.Navigation-component {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: $font;
+  color: $blue;
+  .Navigation-title {
+    text-decoration: none;
+    color: inherit;
+  }
+}

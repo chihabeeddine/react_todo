@@ -9,6 +9,7 @@ import { ConnectedNavigation } from './Navigation'
 import { ConnectTaskDetail } from './TaskDetail'
 import { Redirect } from 'react-router'
 
+import './Main.scss'
 const RouteGuard = Component => ({ match }) => {
   console.info('Route guard', match)
   if (!store.getState().session.authenticated) {
@@ -19,7 +20,7 @@ const RouteGuard = Component => ({ match }) => {
 export const Main = () => (
   <Router history={history}>
     <Provider store={store}>
-      <div>
+      <div className="Main-app">
         <ConnectedNavigation />
         <Route exact path="/" component={ConnectedLogin} />
         <Route exact path="/dashboard" render={RouteGuard(ConnectedDashboard)} />

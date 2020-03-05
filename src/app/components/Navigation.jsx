@@ -1,16 +1,14 @@
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import React from 'react'
-
+import './Navigation.scss'
 
 const Navigation = () => (
-    <div>
-        <Link to='/dashboard'>
-            <h1>
-                My Application
-            </h1>
-        </Link>
-    </div>
+  <div className="Navigation-component">
+    <Link className="Navigation-title" to="/dashboard">
+      <h2>Home</h2>
+    </Link>
+  </div>
 )
 
 export const ConnectedNavigation = connect(state => state)(Navigation)

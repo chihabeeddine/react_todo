@@ -10,7 +10,6 @@ async function initDB() {
                 if (defaultState.hasOwnProperty(collectionName)) {
                     let collection = db.collection(collectionName)
                     await collection.insertMany(defaultState[collectionName])
-
                 }
             }
         }

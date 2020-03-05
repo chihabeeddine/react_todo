@@ -10,6 +10,7 @@ import * as mutations from './mutations';
 import { history } from "./history";
 
 const url = process.env.NODE_ENV == `production` ? '' : 'http://localhost:7777'
+console.log('url:', url)
 
 
 export function* taskCreationSaga() {
@@ -63,6 +64,7 @@ export function* userAuthenticationSaga() {
             }
 
             console.log('Authenticated!', data);
+
             yield put(mutations.setState(data.state))
             yield put(mutations.processAuthenticateUser(mutations.AUTHENTICATED))
             history.push('/dashboard')
