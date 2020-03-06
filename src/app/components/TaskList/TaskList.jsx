@@ -1,22 +1,26 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { requestTaskCreation } from '../store/mutations'
+import { requestTaskCreation } from '../../store/mutations'
 import { Link } from 'react-router-dom'
+import Button from '@material-ui/core/Button'
 
 import './TaskList.scss'
 
 export const TaskList = ({ tasks, name, id, createNewTask }) => (
   <div>
     <h3 className="task-title">{name}</h3>
-    <div>
+    <div className="task-wrapper">
       {tasks.map(task => (
-        <Link to={`/task/${task.id}`} key={task.id}>
+        <Link className="task-item" to={`/task/${task.id}`} key={task.id}>
           <div> {task.name} </div>
         </Link>
       ))}
     </div>
-    <button onClick={() => createNewTask(id)}>Add New</button>
+
+    <Button onClick={() => createNewTask(id)} variant="outlined" color="primary">
+      Add New
+    </Button>
   </div>
 )
 

@@ -1,0 +1,26 @@
+@import '../../assets/assets.scss';
+
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  .form-wrapper {
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    .login-title {
+      @include text-decoration;
+      color: $blue;
+    }
+    .form-login {
+      width: 100%;
+      margin-top: 10px;
+    }
+    .form-input {
+      width: 100%;
+      padding-bottom: 10px;
+      color: $blue;
+      border-color: $blue;
+    }
+  }
+}

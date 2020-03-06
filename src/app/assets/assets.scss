@@ -6,3 +6,9 @@ $blue-light: #eaf2f8;
 $background-grey-light: #fafafa;
 
 $font: 'Montserrat', sans-serif;
+
+@mixin text-decoration {
+  text-decoration: none;
+  font-family: $font;
+  font-size: 1rem;
+}
