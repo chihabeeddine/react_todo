@@ -16,7 +16,7 @@ const LoginComponent = ({ authenticateUser, authenticated }) => {
           {/* <input type="text" placeholder="username" name="username" defaultValue="Dev" required />
           <input type="password" placeholder="password" name="password" defaultValue="" required /> */}
           <TextField className="form-input" id="outlined-basic" label="Username" variant="outlined" name="username" defaultValue="Dev" required />
-          <TextField className="form-input" type="password" id="outlined-basic" label="Password" variant="outlined" name="password" required />
+          <TextField className="form-input" type="password" id="outlined-basic" label="Password" variant="outlined" name="password" defaultValue="TUPLES" required />
 
           {authenticated == mutations.NOT_AUTHENTICATED ? <p> Login incorrect</p> : null}
           <Button type="submit" className="form-login" variant="contained" color="primary">

@@ -4,28 +4,41 @@ import { Link } from 'react-router-dom'
 
 import * as mutations from '../../store/mutations'
 
-const TaskDetail = ({ id, comments, task, isComplete, groups, setTaskCompletion, setTaskGroup, setTaskName }) => (
-  <div>
-    <div>
-      <input onChange={setTaskName} type="text" value={task.name} />
-    </div>
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+import Select from '@material-ui/core/Select'
+import MenuItem from '@material-ui/core/MenuItem'
 
-    <div>
-      <button onClick={() => setTaskCompletion(id, !isComplete)}> {isComplete ? `Reopen` : `Complete`} </button>
-    </div>
-    <div>
-      <select onChange={setTaskGroup} value={task.group}>
-        {groups.map(group => (
-          <option key={group.id} value={group.id}>
-            {group.name}
-          </option>
-        ))}
-      </select>
-    </div>
-    <div>
-      <Link to="/dashboard">
-        <button>Done</button>
-      </Link>
+import './TaskDetail.scss'
+
+const TaskDetail = ({ id, comments, task, isComplete, groups, setTaskCompletion, setTaskGroup, setTaskName }) => (
+  <div className="task-detail">
+    <div className="items-wrapper">
+      <div className="item-input">
+        <TextField className="item-input" id="outlined-basic" label="Item" variant="outlined" onChange={setTaskName} value={task.name} />
+      </div>
+      <div className="item-input">
+        <Select className="task-status-button" labelId="demo-simple-select-label" id="options-select" value={task.group} onChange={setTaskGroup}>
+          {groups.map(group => (
+            <MenuItem key={group.id} value={group.id}>
+              {group.name}
+            </MenuItem>
+          ))}
+        </Select>
+      </div>
+      <div className="item-input">
+        <Button className="task-status-button" onClick={() => setTaskCompletion(id, !isComplete)} variant="outlined" color="primary">
+          {isComplete ? `Reopen` : `Complete`}
+        </Button>
+      </div>
+
+      <div>
+        <Link className="dashboard-link" to="/dashboard">
+          <Button className="dashboard-link-button" variant="outlined" color="primary">
+            Done
+          </Button>
+        </Link>
+      </div>
     </div>
   </div>
 )

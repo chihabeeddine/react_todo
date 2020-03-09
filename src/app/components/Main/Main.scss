@@ -1,8 +1,6 @@
 @import '../../assets/assets.scss';
 
 .Main-app {
-  font: $font;
-  font-size: 1rem;
-  text-decoration: none;
+  @include text-decoration;
   background-color: $background-grey-light;
 }

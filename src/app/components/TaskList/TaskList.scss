@@ -1,13 +1,29 @@
 @import '../../assets/assets.scss';
 
-.task-title {
-  @include text-decoration;
-  color: $blue;
-}
-.task-wrapper {
-  padding: 10px 0;
-  .task-item {
-    color: black;
+.task-list {
+  display: flex;
+  flex-direction: column;
+  width: calc((100% / 3) - 10px);
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 0 5%;
+  }
+  .task-title {
     @include text-decoration;
+    color: $blue;
+  }
+  .task-wrapper {
+    padding: 10px 0;
+    .task-item {
+      color: black;
+      @include text-decoration;
+      padding-bottom: 10px;
+      .item {
+        padding-bottom: 10px;
+      }
+    }
+  }
+  .add-task-button {
+    margin-top: auto;
   }
 }

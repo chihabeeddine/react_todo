@@ -8,17 +8,17 @@ import Button from '@material-ui/core/Button'
 import './TaskList.scss'
 
 export const TaskList = ({ tasks, name, id, createNewTask }) => (
-  <div>
+  <div className="task-list">
     <h3 className="task-title">{name}</h3>
     <div className="task-wrapper">
       {tasks.map(task => (
         <Link className="task-item" to={`/task/${task.id}`} key={task.id}>
-          <div> {task.name} </div>
+          <div className="item"> {task.name} </div>
         </Link>
       ))}
     </div>
 
-    <Button onClick={() => createNewTask(id)} variant="outlined" color="primary">
+    <Button className="add-task-button" onClick={() => createNewTask(id)} variant="outlined" color="primary">
       Add New
     </Button>
   </div>

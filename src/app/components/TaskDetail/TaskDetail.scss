@@ -1,0 +1,23 @@
+@import '../../assets/assets.scss';
+
+.task-detail {
+  display: flex;
+  justify-content: center;
+  .items-wrapper {
+    width: 60%;
+    .item-input {
+      width: 100%;
+      .task-status-button {
+        margin-top: 10px;
+        width: 30%;
+      }
+    }
+  }
+  .dashboard-link {
+    text-decoration: none;
+    .dashboard-link-button {
+      margin-top: 10px;
+      width: 30%;
+    }
+  }
+}
