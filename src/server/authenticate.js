@@ -1,27 +1,9 @@
 import { v4 as uuid } from 'uuid'
 import md5 from 'md5'
-
+import { assembleUserState } from './utility';
 import { connectDB } from "./connect-db";
 
 const authenticationTokens = []
-
-async function assembleUserState(user) {
-    try {
-
-        const db = await connectDB();
-
-        const tasks = await db.collection(`tasks`).find({ owner: user.id }).toArray();
-        const groups = await db.collection(`groups`).find({ owner: user.id }).toArray()
-
-        return {
-            tasks,
-            groups,
-            session: { authenticated: `AUTHENTICATED`, id: user.id }
-        }
-    } catch (error) {
-        console.error(error)
-    }
-}
 
 export const authenticationRoute = app => {
     app.post('/authenticate', async (req, res) => {
@@ -56,4 +38,34 @@ export const authenticationRoute = app => {
         }
 
     })
+    app.post('/user/create', async (req, res) => {
+        let { username, password } = req.body;
+        console.log(username, password);
+        let db = await connectDB();
+        let collection = db.collection(`users`);
+        let user = await collection.findOne({ name: username });
+        if (user) {
+            res.status(500).send({ message: "A user with that account name already exists." });
+            return;
+        };
+
+        let userID = uuid();
+        let groupID = uuid();
+
+        await collection.insertOne({
+            name: username,
+            id: userID,
+            passwordHash: md5(password)
+        });
+
+        await db.collection(`groups`).insertOne({
+            id: groupID,
+            owner: userID,
+            name: `To Do`
+        });
+
+        let state = await assembleUserState({ id: userID, name: username });
+
+        res.status(200).send({ userID, state });
+    });
 }

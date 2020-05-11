@@ -9,7 +9,8 @@ export const AUTHENTICATING = `AUTHENTICATING`
 export const AUTHENTICATED = `AUTHENTICATED`
 export const NOT_AUTHENTICATED = `NOT_AUTHENTICATED`
 export const SET_STATE = `SET_STATE`
-
+export const USERNAME_RESERVED = `USERNAME_RESERVED`;
+export const REQUEST_USER_ACCOUNT_CREATION = `REQUEST_USER_ACCOUNT_CREATION`;
 
 
 export const requestTaskCreation = (groupID) => ({
@@ -57,3 +58,9 @@ export const setState = (state = {}) => ({
     type: SET_STATE,
     state
 })
+
+export const requestCreateUserAccount = (username, password) => ({
+    type: REQUEST_USER_ACCOUNT_CREATION,
+    username,
+    password
+});

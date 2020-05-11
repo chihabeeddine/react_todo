@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 import * as mutations from '../../store/mutations'
 import './Login.scss'
@@ -12,6 +13,9 @@ const LoginComponent = ({ authenticateUser, authenticated }) => {
     <div className="login-wrapper">
       <div className="form-wrapper">
         <h2 className="login-title ">Please Login</h2>
+        <h3>
+          <Link to="signup">Don't have an account? Sign up.</Link>
+        </h3>
         <form onSubmit={authenticateUser}>
           {/* <input type="text" placeholder="username" name="username" defaultValue="Dev" required />
           <input type="password" placeholder="password" name="password" defaultValue="" required /> */}
@@ -29,16 +33,16 @@ const LoginComponent = ({ authenticateUser, authenticated }) => {
 }
 
 const mapStateToProps = ({ session }) => ({
-  authenticated: session.authenticated
+  authenticated: session.authenticated,
 })
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   authenticateUser(e) {
     e.preventDefault()
     const username = e.target['username'].value
     const password = e.target['password'].value
     dispatch(mutations.requestAuthenticateUser(username, password))
-  }
+  },
 })
 
 export const ConnectedLogin = connect(mapStateToProps, mapDispatchToProps)(LoginComponent)
